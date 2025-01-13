@@ -1,0 +1,10 @@
+input:
+  file_path: "resources/mr-train.txt"
+  lines_to_read: 10
+
+output:
+  file_path: "resources/marathi.tokens"
+
+vocab_size: 2000
+
+token_regex: ""
