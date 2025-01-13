@@ -2,6 +2,10 @@
 
 A web interface for tokenizing Marathi text and decoding token IDs using Gradio.
 
+## Demo URL
+https://huggingface.co/spaces/sawandarekar/marathi-tokenizer
+
+
 ## Project Structure 
 ```
 ├── data/ # Data files (ignored by git)
