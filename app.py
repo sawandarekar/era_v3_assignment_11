@@ -54,7 +54,7 @@ with gr.Blocks(title="Marathi Text Tokenizer") as demo:
             )
         with gr.Row():
             token_count = gr.Number(label="Number of Tokens", precision=0)
-            token_ids = gr.JSON(label="Encoded Token IDs")
+            token_ids = gr.Textbox(label="Encoded Token IDs", lines=5)
             decoded_verify = gr.Textbox(label="Decoded Text Verification", lines=2)
         encode_btn = gr.Button("Encode Text")
         encode_btn.click(
@@ -62,25 +62,6 @@ with gr.Blocks(title="Marathi Text Tokenizer") as demo:
             inputs=[input_text],
             outputs=[token_count, token_ids, decoded_verify]
         )
-        
-        # # Second row - Tokens to Text
-        # gr.Markdown("### Decode Tokens to Text")
-        # with gr.Row():
-        #     token_array_input = gr.Textbox(
-        #         label="Enter Token Array",
-        #         placeholder="Enter tokens as [1,2,3,4,5]",
-        #         lines=2
-        #     )
-        #     decoded_output = gr.Textbox(
-        #         label="Decoded Text",
-        #         lines=2
-        #     )
-        # decode_btn = gr.Button("Decode Tokens")
-        # decode_btn.click(
-        #     fn=decode_token_array,
-        #     inputs=[token_array_input],
-        #     outputs=[decoded_output]
-        # )
         
         # Examples
         gr.Examples(
