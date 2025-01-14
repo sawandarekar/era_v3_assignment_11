@@ -87,13 +87,20 @@ def decode(ids, merges):
     
     # Expand all tokens and concatenate
     bytes_list = [expand_token(id) for id in ids]
+    print("bytes_list:", bytes_list)
     bytes_data = b''.join(bytes_list)
-    
+    print("bytes_data:", bytes_data)
+
+
+    ids_text_list = {str(id): expand_token(id).decode('utf-8', errors='ignore') for id in ids}
+    print("ids_text_list:", ids_text_list)
+
     # Convert bytes back to text
     try:
-        return bytes_data.decode('utf-8')
+        return bytes_data.decode('utf-8'), ids_text_list
     except UnicodeDecodeError:
         return "[DECODE_ERROR]"
+    
 
 def tokenizer(config: dict):
     # get text from imput file
@@ -161,7 +168,7 @@ def tokenizer(config: dict):
 
 def validate_tokenizer(test_string, merges, config):
     encoded_tokens = encode(test_string, merges, config)
-    decoded_string = decode(encoded_tokens, merges)
+    decoded_string, decoded_ids = decode(encoded_tokens, merges)
     print("test_string: ", test_string)
     print("encoded-token-size: ", len(encoded_tokens))
     print("encoded-token-ids: ", encoded_tokens)

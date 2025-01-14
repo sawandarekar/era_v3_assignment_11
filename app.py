@@ -26,9 +26,9 @@ def decode_token_array(token_array_str):
         #decoded_text = config.decode(token_ids)
         # print("token_ids: ", token_ids)
 
-        decoded_string = decode(token_ids, merges)
+        decoded_string, decoded_ids = decode(token_ids, merges)
 
-        return decoded_string
+        return decoded_string, decoded_ids
     except Exception as e:
         return f"Error: Please enter valid token IDs in format [1,2,3]. Error: {str(e)}"
 
@@ -85,12 +85,16 @@ with gr.Blocks(title="Marathi Text Tokenizer") as demo:
                 label="Decoded Text",
                 lines=2
             )
+            decoded_ids = gr.JSON(
+                label="Decoded ids"
+            )
         decode_btn = gr.Button("Decode Tokens")
         decode_btn.click(
             fn=decode_token_array,
             inputs=[token_array_input],
-            outputs=[decoded_output]
+            outputs=[decoded_output, decoded_ids]
         )
+
 
 if __name__ == "__main__":
     demo.launch()
