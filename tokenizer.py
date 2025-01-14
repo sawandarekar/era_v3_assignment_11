@@ -29,7 +29,8 @@ def convert_string_to_tokens(input_text, config):
     if config["token_regex"] and len(config["token_regex"]) > 0:
         print("token regex:", config["token_regex"])
         # TODO: Implement regex-based tokenization
-        return re.findall(config["token_regex"], input_text)
+        tokens =  re.findall(config["token_regex"], input_text)
+        return [b for token in tokens for b in token.encode('utf-8')]
     else:
         # Default to character-level tokenization
         #return list(input_text)
